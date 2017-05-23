@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>PACES</title>
+		<link rel="stylesheet" type="text/css" href="style2.css">
+	</head>
+	
+	<body LINK="yellow" VLINK="008000">
+<table>
+<td width="70%" valign="top" bgcolor="#F0F0FF">
+<form action="engagementconn.php" method="POST" >
+<p>Engagement ID: <input type="text" name="eng_id" ></p>
+<p>Engagement Name: <input type="text" name="eng_name" /></p>
+<p>Type of Engagement: <input type="text" name="eng_type" /></p>
+<p>Description:<br><textarea name="eng_desc" rows="5" cols="40"></textarea></p>
+<p>Details:<br> <textarea name="eng_details" rows="5" cols="40"></textarea></p>
+<p>Website: <input type="text" name="eng_website" /></p>
+<p>Student Level:<select name="eng_student_lvl">
+  <option value = "Please select" disabled>Please select</option>
+  <option value="freshman">Freshman</option>
+  <option value="sophmore">Sophmore</option>
+  <option value="junior">Junior</option>
+  <option value="senior">Senior</option>
+</select> <br></p>
+<p>Course Level:
+<select name="eng_course_level">
+  <option value = "Please select" disabled>Please select</option>
+  <option value="1000">1000</option>
+  <option value="2000">2000</option>
+  <option value="3000">3000</option>
+  <option value="4000">4000</option>
+</select></p>
+<p>Time Frame:<input type="text" name="eng_time_frame"><br></p>
+<p><i>for example 1 to 2 week</p></i>	
+<p>Start Date:<input type="date" name="eng_start_date" /><br></p>	
+<p>End Date:<input type="date" name="eng_end_date" /><br></p>	
+<p>CSU CONTACT ID:<input type="text" name="eng_contact_csu_id"/><br></p>
+<p>Date Update: <input type="date" name="eng_date_updated" /><br></p>	
+<input type="submit" value="submit" />
+<input type="reset" value = "reset" />
+</form><br>
+</td>
+</table>
+</html>	
