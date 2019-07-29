@@ -1,462 +1,270 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html  >
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Group 1</title>
-  <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
-  <script type="text/javascript" src="style/accordian.pack.js"></script>
-
-</head>
-
-<body onload="new Accordian('basic-accordian',5,'header_highlight');">
-  <div id="logo"><h1>Group 1 ITDB 4202 </h1></div>
-  <div id="basic-accordian" >
-    <div id="test-header" class="accordion_headings header_highlight">Home</div>
-    <div id="test-content">
-      <div class="accordion_child">
-      
-        <h2>Purpose of the Website</h2>
-        <p>
-        The purpose of the website is to document the steps of the development for the database we create for the Partnering Academics and Community Engagement work of the project. It will provide our progress as well as proper documentation of each step.
-      </p>
-      <h2>Team Members</h2>
-        <ul>
-            <li>Larryn Uchime</li>
-            <li>Sarina Bell</li>
-            <li>Herny Jester</li>
-            <li>Jessica Wilson</li>
-        </ul>
-
-      <h2>Team Ground Rules</h2>
-        <ol>
-            <li>Do not interrupt other team members while they are speaking!</li>
-            <li>Consider other team members' ideas!</li>
-            <li>Finish assigned tasks on time!</li>
-            <li>If there are any mistakes, politely point them out. If you made a mistake, don't be offended if it is pointed out.</li>
-            <li>Any kind of problems should be addressed immediately! We will listen and solve it together!</li>
-            <li>If something goes wrong, the whole team is to blame! If something is successful, the whole team gets credit!</li>
-            <li>Nobody's job is done until every task of the project is completely finished!</li>
-        </ol>
-      </div>
-    </div>
-    <div id="test1-header" class="accordion_headings">Milestone 4</div>
-    <div id="test1-content">
-      <div class="accordion_child">
-        <p>Milestone Leader: Larryn Uchime</p>
-
-        <h2>Analysis of problems and/or opportunities</h2>
-
-        <p>Client's business objectives:</p>
-
-          <ul>
-            <li>Consolidate existing community engagement project records</li>
-            <li>Update or modify existing community engagement projects</li>
-            <li>Allow search for list of engagement projects by selected search criteria</li>
-            <li>Formatted records of individual community engagement projects with relevant summary</li>
-            <li>Keep PACE site current</li>
-          </ul>
-
-        <h2>Assumptions</h2>
-          <ul>
-            <li>An organization can have many engagements</li>
-            <li>Student can be involved in many engagemnents</li>
-            <li>One contact person can provide many projects</li>
-            <li>Organizations can provide many projects</li>
-            <li>An engagement can be held at many locations</li>
-			<li>New engagement request date must be greater than than sysdate </li>
-          </ul>
-
-
-        <h2>New Forms and Reports Needed</h2>
-
-        <p><b>Request Form:</b> A form which any school or personnel can request to have a project done.
-        Form shall include the name of the project, location of project and brief describe of the 
-        project entail.  A start date and expected end of the project as well.</p>
-
-       <ul>
-          <li>Consolidate: Form that can be used to combine projects</li>
-          <li>Update/Modify: Create a form to allow updates or modification of existing community engagement projects</li>
-          <li>Search list: A query of the database for anything</li>
-          <li>Formatted records: A query of the database for individual community engagement projects with relevant summary informaiton</li>
-          <li>Map community engagement projects to key CSU and community contacts: when looking up an engagement, it should display the key CSU and community contacts in the abbreviated description.</li>
-
-      </ul>
-
-      <!-- <h2>Forms and Reports currently in use</h2> -->
-        
-
-<!--       <h2>List of Entities and Attributes</h2>
-        <ul>
-            <li>Engagements: Engagement type, engagement domain, engagement description, additional details,<br> engagement website, time frame, engagement start date, engagement end date, number of student participants</li>
-
-            <li><b>PROJECTS</b> (Project_ID -> Project_Name, Project_Type, Location)</li>
-            <li><b>SCHOOLS</b> (School_ID -> School_Name, School_Type, School_Location)</li>
-            <li><b>PERSONNEL</b> (Personnel_ID -> P_Fname, P_Lname, Title)</li>
-            <li><b>STUDENTS</b> (Student_ID -> S_Fname, S_Lname, Grade_Level)</li>
-            <li><b>DEPARTMENTS</b> (Dept_ID -> Dept_Name, Dept_Head, Office_Number)</li>
-        </ul> -->
-
-      <h2>RSD</h2>
-		 <img src="pace_rsd.png" alt="example graphic" />
-             <br>
-             <br>
-        <a href="rsd.html">RSD</a><br><br>
-		<a href="enforcement.pdf">Enforcement</a><br><br>
-		<a href="DBTestPlan.pdf">Test Plan</a><br><br>
-		<h1>Pace Script</h1>
-<div style="height:220px; width:770px; border:1px solid #ccc; overflow:auto;">
-
-CREATE TABLE CLASS (<br>
-                Class_ID NUMBER(6) NOT NULL,<br>
-                CRN_Num CHAR(5) NOT NULL,<br>
-                Term VARCHAR2(10) NOT NULL,<br>
-                Class_Num CHAR(8) NOT NULL,<br>
-                Class_Title VARCHAR2(50) NOT NULL,<br>
-                Instructor_Name VARCHAR2(35) NOT NULL,<br>
-                Student_Count NUMBER(3) NOT NULL,<br>
-				CONSTRAINT CK_term  check (term = 'spring' or term = 'fall' or term ='summer'),<br>
-                CONSTRAINT CLASS_ID PRIMARY KEY (Class_ID)<br>
-);<br>
-); <br>
-<p style="color:green;">--All attributes in CLASS table can't be null. Class_ID is the pk. Insert into Class values (null, '20222', 'Fall16', 'ITFN1000', 'Intro to CS','J. Jones', 35);<br>
----error at line 1: ora-01400: cannot insert NULL into ('jwilson64'.'class'.'class_id')</p>
-
-CREATE TABLE CONTACT_CSU (<br>
-                Contact_CSU_ID NUMBER(6) NOT NULL,<br>
-                Contact_CSU_Name VARCHAR2(25) NOT NULL,<br>
-                Contact_CSU_Phone_Area_Code CHAR(3) NOT NULL,<br>
-                Contact_CSU_Phone_Numb CHAR(7) NOT NULL,<br>
-                Contact_CSU_Phone_Ext VARCHAR2(6) DEFAULT NULL,<br>
-                Contact_CSU_Email VARCHAR2(30) NOT NULL,<br>
-                CONSTRAINT CONTACT_CSU_ID PRIMARY KEY (Contact_CSU_ID)<br>
-);<br>
-<p style="color:green;">--All attributes except for contact_csu_phone_ext can't be null. CONTACT_CSU_ID is the pk. Insert into contact_csu values (6, 'J. Jones', null, '3456789', '1009', 'jjones@clayton.edu');<br>
---error at line 1: ora-01400: cannot insert NULL into ("jwilson64"."CONTACT_CSU"."Contact_csu_phone_area_code")</p>
-
-<br>
-CREATE TABLE LOCATION (<br>
-                Loc_ID NUMBER(6) NOT NULL,<br>
-                Loc_Name VARCHAR2(50) NOT NULL,<br>
-                Loc_Address1 VARCHAR2(40) NOT NULL,<br>
-                Loc_Address2 VARCHAR2(40) DEFAULT NULL,<br>
-                Loc_City VARCHAR2(30) NOT NULL,<br>
-                Loc_State CHAR(2) NOT NULL,<br>
-                Loc_Zip CHAR(5) NOT NULL,<br>
-                Loc_County VARCHAR2(20),<br>
-                CONSTRAINT LOCATION_PK PRIMARY KEY (Loc_ID)<br>
-);<br>
-<p style="color:green;">--All attributes except for loc_address2 and loc_county can't be null. Loc_ID is the pk. Insert into Location values (1, 'Reynolds Park', '4545 Reynolds Road', null, 'Morrow', 'GA', '30260', 'Clayton');<br>
---Error at line 1 ora-00001: unique constraint (jwilson64.location_pk) violated</p>
-<br>
-CREATE TABLE ORGANIZATION (<br>
-                Org_ID NUMBER(6) NOT NULL,<br>
-                Org_Name VARCHAR2(50) NOT NULL,<br>
-                Org_Address1 VARCHAR2(40) NOT NULL,<br>
-                Org_Address2 VARCHAR2(40) DEFAULT NULL,<br>
-                Org_ZIP CHAR(5) NOT NULL,<br>
-                Org_City VARCHAR2(30) NOT NULL,<br>
-                Org_State CHAR(2) NOT NULL,<br>
-                Org_Website VARCHAR2(200) NOT NULL,<br>
-                CONSTRAINT ORGANIZATION_PK PRIMARY KEY (Org_ID)<br>
-);<br>
-<p style="color:green;">--All attributes except for org_address2 can't be null. Org_ID is the pk. Insert into Organization values (1,'Clayton Recreation', '2340 Morrow Road', null, 'Morrow', 'GA', '30260', 'claytonrec.org');<br>
---Error at line 1: ora-00001: unique constraint (jwilson64.organization_pk) violated</p>
-<br>
-CREATE TABLE CONTACT_ORG (<br>
-                Org_ID NUMBER(6) NOT NULL,<br>
-                Contact_Org_ID NUMBER(6) NOT NULL,<br>
-                Contact_Org_Name VARCHAR2(50) NOT NULL,<br>
-                Contact_Org_Phone_Area_Code CHAR(3) NOT NULL,<br>
-                Contact_Org_Phone_Numb CHAR(7) NOT NULL,<br>
-                Contact_Org_Phone_Ext VARCHAR2(6) DEFAULT NULL,<br>
-                Contact_Org_Email VARCHAR2(30) NOT NULL,<br>
-                CONSTRAINT CONTACT_ORG_PK PRIMARY KEY (Org_ID, Contact_Org_ID)<br>
-);<br>
-<br>
-CREATE TABLE ENGAGEMENT (<br>
-                Eng_ID NUMBER(6) NOT NULL,<br>
-                Eng_Name VARCHAR2(50) NOT NULL,<br>
-                Eng_Type VARCHAR2(35),<br>
-                Eng_Desc VARCHAR2(2500) NOT NULL,<br>
-                Eng_Details VARCHAR2(2500),<br>
-                Eng_Website VARCHAR2(200) NOT NULL,<br>
-                Eng_Student_Lvl VARCHAR2(15),<br>
-                Eng_Course_Level CHAR(4) NOT NULL,<br>
-                Eng_Time_Frame VARCHAR2(30),<br>
-                Eng_Start_Date DATE NOT NULL,<br>
-                Eng_End_Date DATE NOT NULL,<br>
-                Eng_Contact_CSU_ID NUMBER(6) NOT NULL,<br>
-                Eng_Date_Updated DATE NOT NULL,<br>
-                CONSTRAINT ENGAGEMENT_PK PRIMARY KEY (Eng_ID)<br>
-);<br>
-<br>
-CREATE TABLE ENGAGECLASS (<br>
-                Eng_ID NUMBER(6) NOT NULL,<br>
-                Class_ID NUMBER(6) NOT NULL,<br>
-                Assessment VARCHAR2(2500) NOT NULL,<br>
-                Assessment_Date DATE NOT NULL,<br>
-                Student_Participants NUMBER(3) NOT NULL,<br>
-                CONSTRAINT ENGAGECLASS_PK PRIMARY KEY (Eng_ID, Class_ID)<br>
-);<br>
-<br>
-CREATE TABLE RELATED_COURSES (<br>
-                Eng_ID NUMBER(6) NOT NULL,<br>
-                Course_Num CHAR(8) NOT NULL,<br>
-                Course_Title VARCHAR2(50) NOT NULL,<br>
-                CONSTRAINT RELATED_COURSES_PK PRIMARY KEY (Eng_ID, Course_Num)<br>
-);<br>
-<br>
-CREATE TABLE TOPIC_AREAS (<br>
-                Eng_ID NUMBER(6) NOT NULL,<br>
-                Topic_ID NUMBER(6) NOT NULL,<br>
-                Topic_Name VARCHAR2(50) NOT NULL,<br>
-                CONSTRAINT TOPIC_AREAS_PK PRIMARY KEY (Eng_ID, Topic_ID)<br>
-);<br>
-<br>
-CREATE TABLE ENGLOC (<br>
-                Eng_ID NUMBER(6) NOT NULL,<br>
-                Loc_ID NUMBER(6) NOT NULL,<br>
-                OnCamus CHAR(1) NOT NULL,<br>
-                Primary_Loc CHAR(1) NOT NULL,<br>
-                CONSTRAINT ENGLOC_PK PRIMARY KEY (Eng_ID, Loc_ID)<br>
-);<br>
-<br>
-CREATE TABLE ACADEMIC_DISCIPLINES (<br>
-                Eng_ID NUMBER(6) NOT NULL,<br>
-                Disc_ID NUMBER(6) NOT NULL,<br>
-                Disc_Name VARCHAR2(50) NOT NULL,<br>
-                Disc_Desc VARCHAR2(120) NOT NULL,<br>
-                CONSTRAINT ACADEMIC_DISCIPLINES_PK PRIMARY KEY (Eng_ID, Disc_ID)<br>
-);<br>
-<br>
-CREATE TABLE ENGAGEORG (<br>
-                Eng_ID NUMBER(6) NOT NULL,<br>
-                Org_ID NUMBER(6) NOT NULL,<br>
-                Principle_Org CHAR(1) NOT NULL,<br>
-                CONSTRAINT ENGAGEORG_PK PRIMARY KEY (Eng_ID, Org_ID)<br>
-);<br>
-
-</div>
-<br>
-        <h1>Insert Statements</h1>
-<div style="height:200px; width:770px; border:1px solid #ccc; overflow:auto;">
-insert into  class values (1,'20254','Spring16','CHEM4202','Biochemistry I','R.Singier',21);<br>
-insert into  class values (2,'20863','Spring16','ACCT4330','Accounting Information Systems','A.Novin',40);<br>
-insert into  class values (3,'20233','Spring16','ITFN4014','Internship Cooperative','J.Jones',12);<br>
-insert into  class values (4,'20137','Spring16','CSCI3320','Software Engineering Design','J.Qu',25);<br>
-insert into  class values (5,'20878','Spring16','BUSA3101','Business Statistics','L. Arjomand',17);<br>
-commit;
-<br><br>
-insert into  contact_csu values (1,'B.McDonald','770','4665400','1002','bridgettemcdonald@clayton.edu');<br>
-insert into  contact_csu values (2,'J.Saunders','770','4665400','1003','josephinesaunders@clayton.edu');<br>
-insert into  contact_csu values (3,'R.Brown','770','4665400','1005','roslynbrown@clayton.edu');<br>
-insert into  contact_csu values (4,'C.Howard','770','4665400','1007','charleshoward@clayton.edu');<br>
-insert into  contact_csu values (5,'L.Taylor','770','4665400','1008','lashaytaylor@clayton.edu');<br>
-commit;
-<br><br>
-insert into  location values (1,'Ronald Bridge Park','5285 Lakeside Drive','','Union City','GA','30291','Fulton');<br>
-insert into  location values (2,'Chime Solution HQ','1000 Southlake Cir','','Morrow','GA','30260','Clayton');<br>
-insert into  location values (3,'Piedmont Park','1071 Piedmont Avenue ','','Atlanta','GA','30309','Fulton');<br>
-insert into  location values (4,'Clayton State University','2000 Clayton State Blvd','','Morrow','GA','30260','Clayton');<br>
-insert into  location values (5,'AT&T HQ Atlanta','725 Peachtree St NE','','Atlanta','GA','30308','Fulton');<br>
-commit;
-<br><br>
-insert into  organization values (1,'Chime Solutions','1000 Southlake Cir','Morrow','GA','30260','www.chimesolutions.com');<br>
-insert into  organization values (2,'City of Union City','5047 Union Street','Union City','GA','30291','www.unioncity.org');<br>
-insert into  organization values (3,'AT&T','725 Peachtree St NE','Atlanta','GA','30308','www.att.com');<br>
-insert into  organization values (4,'Clayton State University','2000 Clayton State Blvd','Morrow','GA','30260','www.clayton.edu');<br>
-insert into  organization values (5,'Georgia Power','7365 Oakley Industrial Blvd','Union City','GA','30291','www.georgiapower.com');<br>
-commit;
-<br><br>
-insert into  contact_org values (1,1,'T.Smith','404','8910772','1702','tsmith@chime.com');<br>
-insert into  contact_org values (2,2,'J.Saunders','770','4665400','1003','josephinesaunders@clayton.edu');<br>
-insert into  contact_org values (3,3,'V.William','770','9642288 ','4890','vwill@unioncity.org');<br>
-insert into  contact_org values (4,4,'M.Cole','770','9752172','3702','mcole99@att.com');<br>
-insert into  contact_org values (5,5,'T.Harris','888','6555888','702','tharris@gp.com');<br>
-commit;
-<br><br>
-insert into  engagement values (1,'Cold Call','Business','Call applicants','Call applicants and recuit new talent','www.chimesolutions.com','All','1000','3 month',TO_DATE('03/20/2016', 'MM/DD/YYYY'),TO_DATE('06/20/2016', 'MM/DD/YYYY'),11,TO_DATE('03/12/2016', 'MM/DD/YYYY'));<br>
-insert into  engagement values (2,'College Website','IT or Computer Science','Project Design','Help Clayton State redesign website','www.clayton.edu','Junior','3000','2 month',TO_DATE('05/20/2016', 'MM/DD/YYYY'),TO_DATE('07/27/2016', 'MM/DD/YYYY'),11,TO_DATE('03/10/2016', 'MM/DD/YYYY'));<br>
-insert into  engagement values (3,'Business of Union','Business','Solicit Business','Help bring new businesses to our city','www.unioncity.org','Junior','3000','6 month',TO_DATE('03/29/2016', 'MM/DD/YYYY'),TO_DATE('09/20/2016', 'MM/DD/YYYY'),11,TO_DATE('03/29/2016', 'MM/DD/YYYY'));<br>
-insert into  engagement values (4,'New Idea','Business or IT or Science','Fresh ideas needed','We need new talent and ideas to help grow into the future','www.att.com','Senior','4000','3 month',TO_DATE('04/19/2016', 'MM/DD/YYYY'),TO_DATE('07/20/2016', 'MM/DD/YYYY'),11,TO_DATE('03/30/2016', 'MM/DD/YYYY'));<br>
-insert into  engagement values (5,'Mini Power','Science or IT','Build solar tower','Help us build clean energy for the park','www.georgiapower.com','Junior','300','2 month',TO_DATE('04/05/2016', 'MM/DD/YYYY'),TO_DATE('06/06/2016', 'MM/DD/YYYY'),11,TO_DATE('03/24/2016', 'MM/DD/YYYY'));<br>
-commit;
-<br><br>
-insert into  engageclass values (1,2,'N/A',TO_DATE('05/17/2016', 'MM/DD/YYYY'),15);<br>
-insert into  engageclass values (2,3,'N/A',TO_DATE('05/17/2016', 'MM/DD/YYYY'),13);<br>
-insert into  engageclass values (3,5,'N/A',TO_DATE('05/17/2016', 'MM/DD/YYYY'),20);<br>
-insert into  engageclass values (4,4,'N/A',TO_DATE('05/17/2016', 'MM/DD/YYYY'),10);<br>
-insert into  engageclass values (5,1,'N/A',TO_DATE('05/17/2016', 'MM/DD/YYYY'),10);<br>
-commit;
-<br><br>
-insert into  related_courses values (1,'20863','Accounting Information Systems');<br>
-insert into  related_courses values (2,'20233','Internship Cooperative');<br>
-insert into  related_courses values (3,'20878','Business Statistics');<br>
-insert into  related_courses values (4,'20137','Software Engineering Design');<br>
-insert into  related_courses values (5,'20034','Biochemistry I');<br>
-commit;
-<br><br>
-insert into  topic_areas values (1,1,'Business');<br>
-insert into  topic_areas values (2,2,'IT');<br>
-insert into  topic_areas values (3,3,'Business');<br>
-insert into  topic_areas values (4,4,'Computer Science');<br>
-insert into  topic_areas values (5,5,'Science');<br>
-commit;
-<br><br>
-insert into  engloc values (1,2,'N','N');<br>
-insert into  engloc values (2,4,'N','N');<br>
-insert into  engloc values (3,1,'N','N');<br>
-insert into  engloc values (4,5,'N','N');<br>
-insert into  engloc values (5,3,'N','N');<br>
-commit;
-<br><br>
-insert into  academic_disciplines values (1,1,'Business','N/A');<br>
-insert into  academic_disciplines values (1,2,'IT','N/A');<br>
-insert into  academic_disciplines values (1,3,'Business','N/A');<br>
-insert into  academic_disciplines values (1,4,'Computer Science','N/A');<br>
-insert into  academic_disciplines values (1,5,'Science','N/A');<br>
-commit;
-<br><br>
-insert into  engageorg values (1,1,'N');<br>
-insert into  engageorg values (2,4,'N');<br>
-insert into  engageorg values (3,2,'N');<br>
-insert into  engageorg values (4,3,'N');<br>
-insert into  engageorg values (5,5,'N');<br>
-commit;
-<br>
-</div>
-
-<br>
-      </div>
-    </div>
-    <div id="test2-header" class="accordion_headings">Milestone 5</div>
-    <div id="test2-content">
-      <div class="accordion_child">
-         <p>Milestone Leader: Henry Jester</p>
-		<h1>Form</h1>
-		<p>The PACE forms are to input information into the PACE database. The forms goes as follow:
-		<li>Engagement Form</li>
-		<li>Location Form</li>
-		<li>CSU Contact Form</li>
-		<li>Class Form</li>
-		<li>Organization Form</li><br>
-		<td><tr><img src="locateform.png" alt="example graphic" width="400" height="200"/>
-		<img src="contactcsuform.png" alt="example graphic" width="400" height="200"/></tr></td>
-		<br><br>
-		<h1>Report</h1>
-		<p>The PACE form will show the output information from the PACE database.  The reports goes as follow:
-		<li>Engagement Detail Report</li>
-		<li>Location Report</li>
-		<li>Assessment Report</li>
-		<li>Organization Detail Report</li>
-		<br>
-		</div>
-		<h1>Views / Reports</h1>
-<div style="height:220px; width:770px; border:1px solid #ccc; overflow:auto;">
-CREATE or REPLACE VIEW engagement_contacts_view <br>
-(engId, engCsuContactId, engOrgId, engOrgPrincOrg, orgName, orgContact, orgContAreaCode, <br>
- orgContPhone, orgContExt, orgContEmail, csuContact, csuContAreaCode, csuContPhone,<br>
- csuContExt, csuContEmail) AS <br>
-Select e.eng_id, e.eng_contact_csu_id, eo.org_id, eo.principle_org, o.org_name, <br>
-       co.contact_org_name, co.contact_org_phone_area_code, co.contact_org_phone_numb,<br>
-       co.contact_org_phone_ext, co.contact_org_email, cc.contact_csu_name, <br>
-       cc.contact_csu_phone_area_code, cc.contact_csu_phone_numb, cc.contact_csu_phone_ext, <br>
-       cc.contact_csu_email <br>
-FROM Engagement e, Engage_Org eo, Contact_Org co, Organization o, Contact_Csu cc <br>
-WHERE eo.eng_id = e.eng_id   <br>
-  AND co.org_id = eo.org_id <br>
-  AND o.org_id = eo.org_id <br>
-  AND cc.contact_csu_id = e.eng_contact_csu_id;<br>
+  <!-- Site made with Mobirise Website Builder v4.10.6, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v4.10.6, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo2.png" type="image/x-icon">
+  <meta name="description" content="">
   
-create or replace view contact_name_view as<br>
-select co.contact_org_name, o.org_name, cs.contact_csu_name cs, e.eng_name <br>
-From Organization o, Contact_org co, Contact_CSU cs, Engagement e, Engage_org eo<br>
-Where o.org_id = eo.org_id<br>
-AND o.org_id = co.org_id<br>
-AND e.eng_contact_csu_id = cs.contact_csu_id<br>
-AND e.eng_id = eo.eng_id;		<br>
-</div>
-<br>
-<h1>Proceduce and Test</h1>
-<div style="height:220px; width:770px; border:1px solid #ccc; overflow:auto;">
-CREATE or REPLACE PROCEDURE engagement_insert_proc(p_engName IN engagement.eng_Name%TYPE,<br>
-                                                   p_engType IN engagement.eng_Type%TYPE,<br>
-                                                   p_engDesc IN engagement.eng_desc%TYPE,<br>
-                                                   p_engDetails IN engagement.eng_details%TYPE,<br>
-                                                   p_engWebsite IN engagement.eng_website%TYPE,<br>
-                                                   p_engStudentLvl IN engagement.eng_student_lvl%TYPE,<br>
-                                                   p_engCourseLvl IN engagement.eng_course_level%TYPE,<br>
-                                                   p_engTimeFrame IN engagement.eng_time_frame%TYPE,<br>
-                                                   p_engStartDate IN VarChar2,<br>
-                                                   p_engEndDate IN VarChar2,<br>
-                                                   p_engContactCsuID IN engagement.eng_contact_csu_id%TYPE,<br>
-                                                   p_engDateUpdated IN VarChar2) AS<br>
-BEGIN<br>
-   DECLARE<br>
-      v_next_eng_id engagement.eng_id%TYPE;<br>
-      v_err_id Number(2) := 01; -- Default error ID for the Engagement table<br>
-   
-   BEGIN<br>
-      -- Get the next available ID from the Engagement table:<br>
-      SELECT MAX(eng_id) INTO v_next_eng_id FROM Engagement;<br>
-      v_next_eng_id := v_next_eng_id + 1;<br>
+  <title>Home</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  
+  
+</head>
+<body>
+  <section class="menu cid-rxsBZFWmMo" once="menu" id="menu1-2">
 
-      INSERT INTO Engagement<br>
-      VALUES (v_next_eng_id, p_engName, p_engType, p_engDesc, p_engDetails, p_engWebsite,<br> 
-              p_engStudentLvl, p_engCourseLvl, p_engTimeFrame, <br>
-              TO_DATE(p_engStartDate, 'MM/DD/YYYY'), TO_DATE(p_engEndDate, 'MM/DD/YYYY'),<br> 
-              p_engContactCsuID, TO_DATE(p_engDateUpdated, 'MM/DD/YYYY'));<br>
-      COMMIT;<br>
-
-      EXCEPTION<br>
-         WHEN NO_DATA_FOUND THEN<br>
-            Dbms_Output.Put_Line('Could not get next Engagement table ID');<br> 
-            INSERT INTO pace_db_err<br>
-            VALUES (v_err_id, 'Could not get next Engagement table ID');<br>
-      
-         -- Handles all other errors<br>
-         WHEN OTHERS THEN<br>
-            INSERT INTO pace_db_err<br>
-            VALUES (v_err_id, 'An undefined error occurred');<br>
-   END;<br>
-END;<br>
-/<br>
-
-SHOW ERRORS;<br>
-
--- Create an Error Table:<br>
-CREATE TABLE PACE_DB_ERR (<br>
-                Err_ID NUMBER(3) NOT NULL,<br>
-                Err_Message VARCHAR2(120) NOT NULL<br>
-);<br>
-
--- Test Data that you can use:<br>
-execute engagement_insert_proc('Animal Rescue','Animal Welfare','Sanctuary for exotic and farm animals','Provide a home for injured, abused and<br> orphaned animals','www.noahs-ark.org','All','1000','Evenings','04/18/2016','06/30/2016',2,'04/22/2016');<br>
-
-</div>
-<br>
-<h2><b>Roles and Privileges</b></h2>
-<li>Users will be able to the insert data by using form</li>
-<li>Users should be able to view table</li>
-<li>Users should insert, select and delete privileges</li>
-<li>Users have the role of an admin users and can grant privilege to other users</li>
-	</div>
-    <div id="test3-header" class="accordion_headings">Milestone 6</div>
-    <div id="test3-content">
-      <div class="accordion_child">
-                <p>Milestone Leader: Jessica and Sarina</p>
-
-		<h1><a href="paces.html">ENTER PACE</a></h1>
-</div>
-<br>
-<br>
-<a href="ppt.pptx">Power Point</a>
-      </div>
-    </div>
     
-  <div id="footer">
-    <p>Group 1</p>
-  </div>
+
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                
+                
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown nav-right navbar-nav-top-padding" data-app-modern-menu="true"><li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="#top">Home</a>
+                </li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#accordion2-h">About Us</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#form1-m">Contact</a></li>
+                <li class="nav-item">
+                    <a class="nav-link link text-white display-4" href="https://mobirise.co">
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a>
+                </li></ul>
+            
+        </div>
+    </nav>
+</section>
+
+<section class="engine"><a href="https://mobirise.info/r">bootstrap template</a></section><section class="header1 cid-rxsDvbkv8X mbr-parallax-background" id="header16-3">
+
+    
+
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(35, 35, 35);">
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 align-center">
+                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">Dr.Sandra Wright</h1>
+                <h3 class="mbr-section-subtitle mbr-light pb-3 mbr-fonts-style display-2"></h3>
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">Professor, Author and Motivative Speaker</p>
+                <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="index.html#accordion2-h">LEARN MORE</a></div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="testimonials2 cid-rxzX0aaO0M" id="testimonials2-j">
+
+    
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-figure pr-lg-5" style="width: 50%;">
+              <img src="assets/images/pic1-1-359x359.jpg" alt="" title="">
+            </div>
+            <div class="media-content px-3 align-self-center mbr-white py-2">
+                    <p class="mbr-text testimonial-text mbr-fonts-style display-7"><span style="font-style: normal;"><strong>
+                       You should never allow anyone to walk inside your mind with dirty feet</strong></span></p>
+                    <p class="mbr-author-name pt-4 mb-2 mbr-fonts-style display-7"><span style="font-weight: normal;"><em>Dr. Sandra Wright</em></span></p>
+                    <p class="mbr-author-desc mbr-fonts-style display-7"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="accordion2 cid-rxzMv1fxUf" id="accordion2-h">
+
+    
+
+
+    
+    <div class="container">
+        <div class="media-container-row pt-5">
+            <div class="accordion-content">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">Our Mission</h2>
+                
+                <div id="bootstrap-accordion_3" class="panel-group accordionStyles accordion pt-5 mt-3" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-core="" href="#collapse1_3" aria-expanded="false" aria-controls="collapse1">
+                                    <h4 class="mbr-fonts-style display-5">
+                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>&nbsp;CURRICULUM DEVELOPMENT</h4>
+                                </a>
+                            </div>
+                            <div id="collapse1_3" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#bootstrap-accordion_3">
+                                <div class="panel-body p-4">
+                                    <p class="mbr-fonts-style panel-text display-7">
+                                       We use a team of experts to develop curriculum. We partner with your team to seamlessly design and implement the curriculum development process to augment your organizational culture and overall industry dynamics.</p>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingTwo">
+                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-core="" href="#collapse2_3" aria-expanded="false" aria-controls="collapse2">
+                                    <h4 class="mbr-fonts-style mbr-fonts-style display-5">
+                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>&nbsp;EXECUTIVE LEADERSHIP &amp; COACHING</h4>
+                                </a>
+                                
+                            </div>
+                            <div id="collapse2_3" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#bootstrap-accordion_3">
+                                <div class="panel-body p-4">
+                                    <p class="mbr-fonts-style panel-text display-7">
+                                       Our team of executive coaches are equipped with the knowledge, skills, and competencies to help senior management employees develop the skills needed to motivate and retain qualified employees, influence others, delegate with finesse, and groom capable successors. Our team is academically astute, and collectively, we have garnered over 100+ years of leadership experience.</p>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingThree">
+                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-core="" href="#collapse3_3" aria-expanded="false" aria-controls="collapse3">
+                                    <h4 class="mbr-fonts-style display-5"><p>
+                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>&nbsp;LEADERSHIP ASSESSMENT &amp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUCCESSION PLANNING</p></h4>
+                                </a>
+                            </div>
+                            <div id="collapse3_3" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#bootstrap-accordion_3">
+                                <div class="panel-body p-4">
+                                    <p class="mbr-fonts-style panel-text display-7">We provide organizations with a comprehensive and integrated valid and legally compliant assessment process that will yield critical information for individuals and the organization to delineate key leadership strengths and developmental areas for subsequent successional planning.</p>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingFour">
+                                <a role="button" class="collapsed panel-title text-black" data-toggle="collapse" data-core="" href="#collapse4_3" aria-expanded="false" aria-controls="collapse4">
+                                    <h4 class="mbr-fonts-style display-5">
+                                        <span class="sign mbr-iconfont mbri-arrow-down inactive"></span>&nbsp;STRATEGIC PLANNING</h4>
+                                </a>
+                            </div>
+                            <div id="collapse4_3" class="panel-collapse noScroll collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#bootstrap-accordion_3">
+                                <div class="panel-body p-4">
+                                    <p class="mbr-fonts-style panel-text display-7">
+                                       Human Interaction Experience (HIE), LLC. works with your leadership team to design a path to growth &amp; profitability. We will help to differentiate you from your competitors. Through data gathering and analysis, you will remain on the cutting edge. We will track industry information, develop forecasting models, examine strategic performance, spot emerging market opportunities, identify business threats, identify strategic solutions, and develop innovative action plans.</p>
+                                </div>
+                            </div>
+                        </div>
+                
+                        
+                
+                        
+                </div>
+            </div>
+            <div class="mbr-figure" style="width: 50%;">
+                    <img src="assets/images/pic7-610x610.jpg" alt="Mobirise" title="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section form1 cid-rxzYA3R4ZW" id="form1-m">
+
+    
+
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                    CONTACT FORM
+                </h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5">
+                    Easily add subscribe and contact forms without any server-side integration.
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="media-container-column col-lg-8" data-form-type="formoid">
+                <!---Formbuilder Form--->
+                <form action="https://mobirise.com/" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="odSTi2VCwZBDDQwDcPQW81uHHK3Sg2NuEmYnX7aiPBWxTfECh9oo/3z1PZ0Pyj7LwxsAbgoW6VFr3ZzP3AySuS4DzgqDZkBNOcj76T7OzBsVxsMX2w4thhh6he8Xu8FN">
+                    <div class="row">
+                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
+                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
+                        </div>
+                    </div>
+                    <div class="dragArea row">
+                        <div class="col-md-4  form-group" data-for="name">
+                            <label for="name-form1-m" class="form-control-label mbr-fonts-style display-7">Name</label>
+                            <input type="text" name="name" data-form-field="Name" required="required" class="form-control display-7" id="name-form1-m">
+                        </div>
+                        <div class="col-md-4  form-group" data-for="email">
+                            <label for="email-form1-m" class="form-control-label mbr-fonts-style display-7">Email</label>
+                            <input type="email" name="email" data-form-field="Email" required="required" class="form-control display-7" id="email-form1-m">
+                        </div>
+                        <div data-for="phone" class="col-md-4  form-group">
+                            <label for="phone-form1-m" class="form-control-label mbr-fonts-style display-7">Phone</label>
+                            <input type="tel" name="phone" data-form-field="Phone" class="form-control display-7" id="phone-form1-m">
+                        </div>
+                        <div data-for="message" class="col-md-12 form-group">
+                            <label for="message-form1-m" class="form-control-label mbr-fonts-style display-7">Message</label>
+                            <textarea name="message" data-form-field="Message" class="form-control display-7" id="message-form1-m"></textarea>
+                        </div>
+                        <div class="col-md-12 input-group-btn align-center">
+                            <button type="submit" class="btn btn-primary btn-form display-4">SEND FORM</button>
+                        </div>
+                    </div>
+                </form><!---Formbuilder Form--->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section once="footers" class="cid-rxzY69D6tv" id="footer6-k">
+
+    
+
+    
+
+    <div class="container">
+        <div class="media-container-row align-center mbr-white">
+            <div class="col-12">
+                <p class="mbr-text mb-0 mbr-fonts-style display-7">
+                    © Copyright 2019 Dr. Sandra Wright - All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/nav-dropdown.js"></script>
+  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/parallax/jarallax.min.js"></script>
+  <script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  <script src="assets/formoid/formoid.min.js"></script>
+  
+  
 </body>
 </html>
